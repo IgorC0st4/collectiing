@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Collectiing</title>
+
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1"></meta>      
+	<!-- Materialize local-->
+	<link rel = "stylesheet"
+	href = "https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+	<link rel="stylesheet" type="text/css" href="css/materialize.min.css"></link>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	
+	<!-- Materialize online-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"></link>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<!-- jQuery online -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<!-- jQuery local -->
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+	<header>
+		<nav class="blue">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo center">Collectiing</a>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+		<div class="row">
+			<form class="col s12">
+				<div class="input-field col s5">
+					<input id="titulo" type="text" class="validate">
+					<label for="titulo">Título</label>
+				</div>
+				<div class="input-field col s5">
+					<input id="num_volumes" type="number" class="validate" min="1" value="1">
+					<label for="num_volumes">Número de volumes</label>
+				</div>
+				<div class="input-field col s2">
+					<div class="valign-wrapper">
+						<a class="btn-floating btn-large waves-effect waves-light red" id="fab_salvar"><i class="material-icons">save</i></a>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<ul class="collapsible collection with-header" id="list_colecao">
+			<!--
+			<li class="collection-header"><h4>Títulos cadastrados</h4></li>
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">chevron_right</i>
+					First
+					<span class="new badge">4</span>
+				</div>
+					<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+				</li>
+
+				<li>
+					<div class="collapsible-header">
+						<i class="material-icons">place</i>
+						Second
+						<span class="badge">1</span></div>
+						<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+					</li>
+				-->
+			</ul>
+		</div>
+	</body>
+	</html>
