@@ -1,4 +1,5 @@
 $(function(){
+	var indice_selecionado = -1;
 	var tbTitulos;
 	try{
 		tbTitulos = localStorage.getItem("tbTitulos");
@@ -14,20 +15,13 @@ $(function(){
 	function listar(){
 		$("#list_colecao").html("<li class='collection-header'><h4>Títulos cadastrados</h4></li>");
 
-		var i, j;
-		for(i=0; i<tbTitulos.length;i++){
-			var titulo = JSON.parse(tbTitulos[i]);
-			var strAppend = "<li value = '"+i+"'>" +
-			"<div class='collapsible-header'>"+
-					"<i class='material-icons'>chevron_right</i>" + titulo.Titulo +
-					"<a href='#!' class='secondary-content'><i class='material-icons'>delete</i></a>" +
-					"<div class='collapsible-body'>";
-			for (j = 0; j < titulo.Volumes; j++) {
-				strAppend = strAppend + "<a class='waves-effect waves-light btn' value = '" 
-				+ j +"'>"+ (j+1) +"</a>";
-			}
-			strAppend = strAppend + "</div></li>";
-			$("#list_colecao").append(strAppend);
+		for(var i in tbTitulos){
+			var manga = JSON.parse(tbTitulos[i]);
+
+			$("#list_colecao").append('<li class="collection-item" value="'+i+
+				'"><div><a class = "modal-trigger" href="#modal1" value = "'+i+'">' 
+				+ manga.Titulo + 
+				'</a><a href="#!" class="secondary-content"><i class="material-icons" >delete</i></a></div></li>');
 		}
 	}
 
@@ -59,6 +53,14 @@ $(function(){
 
 		listar();
 	}
+
+	function excluir(){
+		tbTitulos.splice(indice_selecionado, 1);
+		localStorage.setItem("tbTitulos", JSON.stringify(tbTitulos));
+		alert("Título excluído.");
+		listar();
+	}
+
 	function getManga(propriedade, valor){
 		var manga = null;
 		for (var item in tbTitulos) {
@@ -72,6 +74,32 @@ $(function(){
 	$("#fab_salvar").on('click', function(event) {
 		salvar();
 	});
-	
+
+	$("#list_colecao").on("click", ".secondary-content", function(){
+		indice_selecionado = parseInt($(this).attr("value"));
+		excluir();
+	});
+
+
+	$("#list_colecao").on("click", ".modal-trigger", function(){
+		indice_selecionado = parseInt($(this).attr("value"));
+		console.log(indice_selecionado);
+		console.log(tbTitulos);
+		console.log(tbTitulos[0]);
+
+		popularModal();
+	});
+
+	function popularModal(){
+		var manga = JSON.parse(tbTitulos[indice_selecionado]);
+		$("#modal_header").html(manga.Titulo);
+		$("#modal_content").html('');
+		var i;
+		for(i=0;i<manga.Volumes; i++){
+			$("#modal_content").append('<a class="waves-effect waves-light btn">#'+ (i+1) +'</a>');
+		}
+	}
+
 	M.AutoInit();
 });
+
